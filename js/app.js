@@ -38,8 +38,8 @@ Enemy.prototype.render = function() {
 }
 
 Enemy.prototype.randomSpeed = function() {
-    var speedMultiply = Math.floor(Math.random() * 5 + 1);
-    this.speed = 75 * speedMultiply;
+    var speedBoost = Math.floor(Math.random() * 5 + 1);
+    this.speed = 75 * speedBoost;
 }
 // Now write your own player class
 // This class requires an update(), render() and
