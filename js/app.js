@@ -1,12 +1,18 @@
+/* 
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
 // Enemies our player must avoid
-var Enemy = function(initialX, initialY, speed) {
+var Enemy = function(startX, startY, speed) {
     // Variables applied to each of our instances go here,
-    // we've provided one for you to get started âœ“
-    this.x = initialX;
-    this.y = initialY;
-    this.speed = speed;
+    // we've provided one for you to get started
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
+    this.x = startX;
+    this.y = startY;
+    this.speed = Math.floor((Math.random() * 2.5 + 1) * 94.2477);
     this.sprite = 'images/narwall.png';
 }
 
@@ -15,21 +21,27 @@ var Enemy = function(initialX, initialY, speed) {
 Enemy.prototype.update = function(dt) {
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
-    // all computers. âœ“
+    // all computers.
     this.x = this.x + this.speed * dt;
     if (this.x > 500) {
-        // Initial enemy x-axis position
         this.x = -60;
-        this.randomSpeed();
+        this.speed = Math.floor((Math.random() * 2.5 + 1) * 94.2477);
     }
-    var baddieXLeftRange = this.x - 50;
-    var baddieXRightRange = this.x + 50;
-    var baddieYTopRange = this.y - 50;
-    var baddieYBottomRange = this.y + 50;
-
-    if (player.x > baddieXLeftRange && player.x < baddieXRightRange && player.y > baddieYTopRange && player.y < baddieYBottomRange) {
-        player.resetPlayerPosition();
+      
+    var enemyTop = this.y - 50;
+    var enemyBottom = this.y + 50;
+    var enemyLeft = this.x - 50;
+    var enemyRight = this.x + 50;
+    
+    if (player.y > enemyTop && player.y < enemyBottom && player.x > enemyLeft && player.x < enemyRight) {
+        player.playerLives = player.playerLives - 1;
+        console.log('You Died, This Much: ' + player.playerLives);
+        player.fmtdplayerLives = HTMLlives.replace('%LIVES%', player.playerLives);
+        document.getElementById('lives').innerHTML = player.fmtdplayerLives;        
+        player.x = player.xStart;
+        player.y = player.yStart;
     }
+   
 }
 
 // Draw the enemy on the screen, required method for game
@@ -37,121 +49,113 @@ Enemy.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 }
 
-Enemy.prototype.randomSpeed = function() {
-    var speedBoost = Math.floor(Math.random() * 5 + 1);
-    this.speed = 75 * speedBoost;
-}
 // Now write your own player class
 // This class requires an update(), render() and
 // a handleInput() method.
-var playerStartX = 200,
-    playerStartY = 400;
 
 var Player = function() {
-    // Play initial place coordinate
-    this.x = playerStartX;
-    this.y = playerStartY;
-    this.wallChecker = {
-        leftWall: false,
-        rightWall: false,
-        bottomWall: true
-    };
+    this.playerScore = 0;
+    this.playerLives = 5;
     this.sprite = 'images/unir.png';
+    this.xStart = 200;
+    this.yStart = 400;
+    this.x = this.xStart;
+    this.y = this.yStart;
+    
+    HTMLscore = '<h3>SCORE</h3><p>%SCORE%</p>';
+    this.fmtdplayerScore = HTMLscore.replace('%SCORE%', this.playerScore);
+    document.getElementById('score').innerHTML = this.fmtdplayerScore;
+    
+    HTMLlives = '<h3>LIVES</h3><p>%LIVES%</p>';
+    this.fmtdplayerLives = HTMLlives.replace('%LIVES%', this.playerLives);
+    document.getElementById('lives').innerHTML = this.fmtdplayerLives;
 }
 
 Player.prototype.update = function() {
-    
+    if (this.y <=50) {
+        this.playerScore = this.playerScore + 100;
+        console.log("You Made It: " + this.playerScore);
+        this.fmtdplayerScore = HTMLscore.replace('%SCORE%', this.playerScore);
+        document.getElementById('score').innerHTML = this.fmtdplayerScore;
+        allEnemies.speed = allEnemies.speed * 255;
+        this.x = this.xStart;
+        this.y = this.yStart;
+    } 
 }
 
 Player.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 }
 
-Player.prototype.resetPlayerPosition = function() {
-    this.x = playerStartX;
-    this.y = playerStartY;
-    this.resetCheckPosition();
-}
-
-Player.prototype.handleInput = function(keyPressed) {
-    // Key press listener, 'left', 'up', 'right', 'down' âœ“
-    var stepHorizontalLength = 100;
-    var stepVerticalLength = 90;
-    this.checkPosition();
-
-    if (keyPressed === 'left') {
-        if (this.wallChecker.leftWall) {
+Player.prototype.handleInput = function(keyPress) {
+    var stepX = 100;
+    var stepY = 82.5;
+    
+    if (keyPress === 'left') {
+        if (this.x <= 50) {
+            //this.boundsMessage();
+            console.log("STOP, Can't Go LEFT Jim!");
             return null;
         }
-        this.x -= stepHorizontalLength;
-    } else if (keyPressed === 'right') {
-        if (this.wallChecker.rightWall) {
+        this.x -= stepX;
+    } else if (keyPress === 'right') {
+        if (this.x >= 400) {
+            //this.boundsMessage();
+            console.log("STOP, Can't Go RIGHT Jim!");
             return null;
         }
-        this.x += stepHorizontalLength;
-    } else if (keyPressed === 'up') {
-        if (this.y === 40) {
-            this.resetPlayerPosition();
+        this.x += stepX;
+    } else if (keyPress === 'up') {
+        if (this.y <= 50) {
+            this.update();
+            console.log("You Made It Jim!");
             return null;
         }
-        this.y -= stepVerticalLength;
-    } else if (keyPressed === 'down') {
-        if (this.wallChecker.bottomWall) {
+        this.y -= stepY;
+    } else if (keyPress === 'down') {
+        if (this.y >= 375) {
+            //this.boundsMessage();
+            console.log("STOP, Can't Go BACK Jim!");
             return null;
         }
-        this.y += stepVerticalLength;
+        this.y += stepY;
     } else {
-        console.log('>>> WRONG KEY PREESED');
+        console.log('That is not the right key!');
         return null;
     }
 }
 
-Player.prototype.checkPosition = function() {
-    if (this.x === 0) {
-        this.setHorizontalWallCheckerState(true, false);
-    } else if (this.x === 400) {
-        this.setHorizontalWallCheckerState(false, true);
-    } else {
-        this.setHorizontalWallCheckerState(false, false);
-    }
-    if (this.y === 400) {
-        this.wallChecker.bottomWall = true;
-    } else {
-        this.wallChecker.bottomWall = false;
-    }
-}
-
-Player.prototype.resetCheckPosition = function() {
-    this.setHorizontalWallCheckerState(false, false);
-    this.wallChecker.bottomWall = true;
-}
-
-Player.prototype.setHorizontalWallCheckerState = function(leftWallState, rightWallState) {
-    this.wallChecker.leftWall = leftWallState;
-    this.wallChecker.rightWall = rightWallState;
-}
-
-var allEnemies = [];
-
-for (var i = 0; i < 4; i++) {
-    var tempSpeed = Math.floor(Math.random() * 5 + 1) * 75;
-    allEnemies.push(new Enemy(-60, 60 + 85 * i, tempSpeed));
-}
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
+var allEnemies = [];
+for (var i = 0; i < 4; i ++) {
+    allEnemies.push(new Enemy(-60, 65 + 82.5 * i));
+}
 
 var player = new Player();
+
+var audio = document.getElementById('bg-music');
+audio.src = 'images/Dreaming.mp3'
+audio.autoplay = true;
+audio.volume = 0.1;
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
 document.addEventListener('keyup', function(e) {
     var allowedKeys = {
+        27: 'pause', //"ESCAPE"
+        80: 'pause', //"P"
         37: 'left',
+        65: 'left', //"A"
         38: 'up',
+        87: 'up', //"W"
         39: 'right',
-        40: 'down'
+        68: 'right', // "D"
+        40: 'down',
+        83: 'down', // "S"
+        13: 'powerUp', // "ENTER"
+        32: 'powerUp' // "SPACE"    
     };
-
     player.handleInput(allowedKeys[e.keyCode]);
 });

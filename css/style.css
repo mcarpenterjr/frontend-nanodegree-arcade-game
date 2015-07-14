@@ -1,3 +1,226 @@
+* {
+
+}
+
+p {
+    color: #ababab;
+    font-family: Droid sans, sans-serif;
+}
+
 body {
+    background:
+    linear-gradient(27deg, #151515 5px, transparent 5px) 0 5px,
+    linear-gradient(207deg, #151515 5px, transparent 5px) 10px 0px,
+    linear-gradient(27deg, #222 5px, transparent 5px) 0px 10px,
+    linear-gradient(207deg, #222 5px, transparent 5px) 10px 5px,
+    linear-gradient(90deg, #1b1b1b 10px, transparent 10px),
+    linear-gradient(#1d1d1d 25%, #1a1a1a 25%, #1a1a1a 50%, transparent 50%, transparent 75%, #242424 75%, #242424);
+    background-color: #131313;
+    background-size: 20px 20px;
+    background-attachment: fixed;
+    text-align: center;
+    margin: 0;
+}
+
+em {
+    font-style: italic;
+    font-weight: 800;
+}
+
+.container {
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 3px;
+    max-width: 1024px;
+    width: 95%;
+    padding: 3px;
+
+}
+
+.header {
+    display: flex;
+    padding-bottom: 2px;
+    padding-top: 2px;
+    //border-bottom: 2px;
+    //border-bottom-style: outset;
+    //border-color: #ababab;
+    max-width: 100%;
+}
+.brndimg {
+    height: 100%;
+    width: 150px;
+    float: left;
+    border-radius: 10px;
+    //border: 2px;
+    //border-style: inset;
+    //border-color: #ababab;
+    overflow: hidden;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+.namespace {
+    width: 100%;
+    float: right;
+    text-align: right;
+    padding-right: 25px;
+    line-height: 2px;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.namespace h1 {
+    color: #ffffff;
+    font-family: Bangers, sans-serif;
+    font-size: 42px;
+    font-weight: 100;
+    letter-spacing: 150%;
+    text-shadow: 1px 4px 6px #000000, 0 0 0 #000, 1px 4px 6px #000000;
+}
+
+.namespace h3 {
+    color: #ffffff;
+    font-family: Orbitron, sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    text-shadow: 1px 4px 6px #634271, 0 0 0 #000, 1px 4px 6px #634271;
+}
+
+.left-margin {
+    float: left;
+    display: inline-block;
+    max-width: 255px;
+    height: 100%;
+    padding-top: 15px;
+    margin-bottom: auto;
+    text-align: justify;
+}
+
+.uni-block {
+    vertical-align: top;
+    overflow: hidden;
+    border-radius: 5px;
+ }
+
+.uni-block h3 {
+    vertical-align: top;
+    margin: 0;
+    color: #ffffff;
+    font-family: Orbitron, sans-serif;
+    font-size: 24px;
+    font-weight: 400;
+    text-shadow: 1px 4px 6px #634271, 0 0 0 #000, 1px 4px 6px #634271;
+    padding: 3px;
+    border-bottom: 2px;
+    border-bottom-style: inset;
+    border-bottom-color: #634271;
+    overflow: hidden;
+    background: #ababab;
+}
+
+.uni-block p {
+    padding: 3.5px;
+}
+
+.uni-block img {
+    max-width: 100px;
+    float: right;
+}
+
+#game {
+    display: inline-block;
+    width: auto;
+    height: auto;
+}
+
+.right-margin {
+    float: right;
+    display: inline-block;
+    max-width: 255px;
+    height: 100%;
+    padding-top: 15px;
+    margin-bottom: auto;
+    text-align: justify;
+}
+
+#score {
+    max-width: 125px; 
+}
+
+#score p {
+    font-size: 36px;
+    text-align: center;
+    font-family: Orbitron, sans-serif;
+}
+
+#score h3 {
     text-align: center;
 }
+
+#lives {
+    max-width: 125px; 
+}
+
+#lives p {
+    font-size: 36px;
+    text-align: center;
+    font-family: Orbitron, sans-serif;
+}
+
+#lives h3 {
+    text-align: center;
+}
+
+#music h3 {
+    text-align: center;
+}
+
+#music button {
+    width: 100%;
+    background: #ababab;   
+    font-size: 18px;
+    text-align: center;
+    font-family: Orbitron, sans-serif;
+    text-shadow: 1px 4px 6px #634271, 0 0 0 #000, 1px 4px 6px #634271;
+}
+
+.footer {
+    width: 100%;
+    display: flex;
+    margin-bottom: 2px;
+    padding: 1px;
+}
+
+.wrapper {
+    text-align: center;
+}
+
+.social {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    margin: 0 10px;
+    line-height: 50px;
+    font-family: Entypo;
+    font-size: 28px;
+    text-align: center;
+    color: #555;
+    border-radius: 10px;
+    background: #eee;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.social {
+    box-shadow: 1px 4px 6px #634271, 0 0 0 #000, 1px 4px 6px #634271;
+    text-shadow: 1px 4px 6px #634271, 0 0 0 #000, 1px 4px 6px #634271;
+}
+
+.social a:link, .social a:visited, .social a:hover, .social a:active {
+    text-decoration: none;
+    color: #555;
+}
+/* 
+    Created on : Apr 3, 2015, 5:32:57 PM
+    Author     : Mark N Carpenter Jr
+*/
+

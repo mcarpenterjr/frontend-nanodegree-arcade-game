@@ -21,13 +21,13 @@ var Engine = (function(global) {
      */
     var doc = global.document,
         win = global.window,
+        div = doc.getElementById('game'),
         canvas = doc.createElement('canvas'),
         ctx = canvas.getContext('2d'),
         lastTime;
-
-    canvas.width = 505;
-    canvas.height = 606;
-    doc.body.appendChild(canvas);
+        canvas.width = 505;
+        canvas.height = 606;
+        div.appendChild(canvas);
 
     /* This function serves as the kickoff point for the game loop itself
      * and handles properly calling the update and render methods.
@@ -108,11 +108,11 @@ var Engine = (function(global) {
          * for that particular row of the game level.
          */
         var rowImages = [
-                'images/stone-block.png',   // Top row is a stone walk.
-                'images/water-block.png',   // Row 1 of 4 of water.
-                'images/water-block.png',   // Row 2 of 4 of water, makes an ocean.
-                'images/water-block.png',   // Row 3 of 4 of water
-                'images/water-block.png',   // row 4 of 4 of water
+                'images/grass-block.png',   // Top row is the Grass.
+                'images/water-block.png',   // Row 2 of 5 of water.
+                'images/water-block.png',   // Row 3 of 5 of water, makes an ocean.
+                'images/water-block.png',   // Row 4 of 5 of water
+                'images/water-block.png',   // row 5 of 5 of water
                 'images/stone-block.png'    // Bottom row is stone.
             ],
             numRows = 6,

@@ -4,11 +4,81 @@
     <meta charset="UTF-8">
     <title>Unicorn Death Run... A JavaScript Game.</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link href='http://fonts.googleapis.com/css?family=Droid+Sans:400,700|Bangers|Orbitron:900,400' rel='stylesheet' type='text/css'>
+    <link href='http://weloveiconfonts.com/api/?family=entypo' rel='stylesheet' type='text/css'>
     <link rel="shortcut icon" type="image/x-icon" href="favicon.png"/>
 </head>
 <body>
+    <div class="container">
+    <!--Start Header-->
+        <div class="header">
+            <img class="brndimg" src="images/logo-uni-nar-r.png" alt="Brand Image">
+            <div class="namespace">
+                <h1>Unicorn Death Run</h1>
+                <h3>A JavaScript Game</h3>
+                <h3>Now with even MORE CANVAS!</h3>
+            </div>
+        </div>
+    <!--End Header/Start Game-->
+    <div class="left-margin">
+        <div class="uni-block" id="about">
+            <h3>The Story...</h3>
+            <p>Charwee, a simple Unicorn from the planet UniCornaCopia,
+            has wandered off and found himself here on earth in the Artic Circle.
+            Using the arrow or WASD keys, navigate Charwee across the water
+            to the grass where Poppi the King of UniCornaCopia is waiting to
+            teleport you back to the land filled with Enchanted and Mystical
+            Horses.
+            <br />
+            <br />            
+            <em>BEWARE... Your journey across the water will be filled with
+            attempts by derranged narwahls to prevent Charwee from returning to
+            UniCornaCopia, and keep him for their own. Or silence his existance,
+            how ever you want to look at it...</em></p>
+            <img src="images/unicorn-poo-r.png" alt="Poppi Unicorn">
+        </div>
+    </div>
+    <div id="game">
+
+    </div>
+    <div class="right-margin">
+        <div class="uni-block" id="score-board">
+            <div class="uni-block" id="score">
+            </div>
+            <div class="uni-block" id="lives">
+            </div>
+            <div id="music" class="uni-block">
+                <h3>Music</h3>
+                <audio id="bg-music"></audio>
+                <button onclick="document.getElementById('bg-music').muted=!
+                document.getElementById('bg-music').muted">MUTE</button>
+            </div>
+        </div>
+    </div>
+    <div id="footer">
+            <div class="wrapper">
+                <div class="social">
+                    <a href="http://www.facebook.com/mcarpenterjr"
+                       target="_blank">&#62220;</a>
+                </div>
+                <div class="social">
+                    <a href="https://twitter.com/xXSirenSxOpusXx"
+                       target="_blank">&#62217;</a>
+                </div>
+                <div class="social">
+                    <a href="https://plus.google.com/115187923991364057968/posts"
+                       target="_blank">&#62223;</a>
+                </div>
+                <div class="social">
+                    <a href="https://www.linkedin.com/pub/mark-carpenter-jr/37/12b/b45"
+                       target="_blank">&#62232;</a>
+                </div>
+            </div>
+        </div>
+    
     <script src="js/resources.js"></script>
-    <script src="js/app.js"></script>
     <script src="js/engine.js"></script>
+    <script src="js/app.js"></script>
 </body>
 </html>
