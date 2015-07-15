@@ -51,7 +51,7 @@
             <div id="music" class="uni-block">
                 <h3>Music</h3>
                 <audio id="bg-music"></audio>
-                <button onclick="document.getElementById('bg-music').muted=!
+                <button id="mute" onclick="document.getElementById('bg-music').muted=!
                 document.getElementById('bg-music').muted">MUTE</button>
             </div>
         </div>
@@ -77,6 +77,12 @@
             </div>
         </div>
     
+    <!--The Modal-->
+    <div id="overlay">
+    <div class="uni-block">
+        <p>Content you want the user to see goes here.</p>
+    </div>
+</div>
     <script src="js/resources.js"></script>
     <script src="js/engine.js"></script>
     <script src="js/app.js"></script>

@@ -12,7 +12,8 @@ var Enemy = function(startX, startY, speed) {
     // a helper we've provided to easily load images
     this.x = startX;
     this.y = startY;
-    this.speed = Math.floor((Math.random() * 2.5 + 1) * 94.2477);
+    this.magic = 94.245
+    this.speed = Math.floor((Math.random() * 2.5 + 1) * this.magic);
     this.sprite = 'images/narwall.png';
 }
 
@@ -25,7 +26,7 @@ Enemy.prototype.update = function(dt) {
     this.x = this.x + this.speed * dt;
     if (this.x > 500) {
         this.x = -60;
-        this.speed = Math.floor((Math.random() * 2.5 + 1) * 94.2477);
+        this.speed = Math.floor((Math.random() * 2.5 + 1) * this.magic);
     }
       
     var enemyTop = this.y - 50;
@@ -41,7 +42,10 @@ Enemy.prototype.update = function(dt) {
         player.x = player.xStart;
         player.y = player.yStart;
     }
-   
+    
+    if (player.y <= 50) {
+        this.magic = this.magic * 1.075;
+    }
 }
 
 // Draw the enemy on the screen, required method for game
@@ -77,7 +81,6 @@ Player.prototype.update = function() {
         console.log("You Made It: " + this.playerScore);
         this.fmtdplayerScore = HTMLscore.replace('%SCORE%', this.playerScore);
         document.getElementById('score').innerHTML = this.fmtdplayerScore;
-        allEnemies.speed = allEnemies.speed * 255;
         this.x = this.xStart;
         this.y = this.yStart;
     } 
@@ -136,9 +139,10 @@ for (var i = 0; i < 4; i ++) {
 var player = new Player();
 
 var audio = document.getElementById('bg-music');
-audio.src = 'images/Dreaming.mp3'
+audio.src = 'images/Dreaming.mp3';
 audio.autoplay = true;
-audio.volume = 0.1;
+audio.volume = 0.15;
+audio.loop = true;
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
